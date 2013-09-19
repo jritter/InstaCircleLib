@@ -1,0 +1,59 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ch.bfh.instacircle"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="15" />
+    
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+       
+
+        <service
+            android:name=".service.NetworkService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+        
+        <service android:name=".service.ProcessUnicastMessageIntentService" />
+        <service android:name=".service.ProcessBroadcastMessageIntentService" />
+        <service android:name=".service.SendBroadcastIntentService" />
+        <service android:name=".service.SendUnicastIntentService" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="application/ch.bfh.instacircle" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CreateNetworkActivity"
+            android:label="@string/app_name" >
+        </activity>
+    </application>
+
+</manifest>

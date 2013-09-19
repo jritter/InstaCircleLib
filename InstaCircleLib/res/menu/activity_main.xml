@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/rescan_wifi"
+        android:icon="@drawable/glyphicons_081_refresh"
+        android:title="@string/rescan_wifi"
+        android:showAsAction="ifRoom" />
+    
+    <item
+        android:id="@+id/capture_qrcode"
+        android:icon="@drawable/glyphicons_011_camera"
+        android:title="@string/capture_qrcode"
+        android:showAsAction="ifRoom" />
+    
+    <item
+        android:id="@+id/cleanup_conversations"
+        android:icon="@drawable/glyphicons_016_bin"
+        android:title="@string/cleanup_conversations"
+        android:showAsAction="ifRoom" />
+</menu>

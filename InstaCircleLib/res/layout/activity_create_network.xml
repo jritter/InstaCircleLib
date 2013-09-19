@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/create_network_textview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:text="@string/create_new_network" />
+
+    <View
+        android:id="@+id/create_network_separator"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/create_network_textview"
+        android:background="@android:color/holo_blue_light"
+        android:gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/network_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/create_network_separator"
+        android:layout_marginTop="20dp"
+        android:text="@string/network_name_label" />
+
+    <EditText
+        android:id="@+id/network_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/network_name_label"
+        android:ems="10"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/network_pin_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/network_name"
+        android:layout_marginTop="20dp"
+        android:text="@string/network_wlan_key" />
+
+    <EditText
+        android:id="@+id/network_pin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/network_pin_label"
+        android:ems="10"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/create_network_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/network_pin"
+        android:layout_marginTop="20dp"
+        android:text="@string/create_network" />
+
+</RelativeLayout>
