@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ch.bfh.instacircle"
+    package="ch.bfh.evoting.instacirclelib"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -27,18 +27,18 @@
        
 
         <service
-            android:name=".service.NetworkService"
+            android:name="ch.bfh.evoting.instacirclelib.service.NetworkService"
             android:enabled="true"
             android:exported="true" >
         </service>
         
-        <service android:name=".service.ProcessUnicastMessageIntentService" />
-        <service android:name=".service.ProcessBroadcastMessageIntentService" />
-        <service android:name=".service.SendBroadcastIntentService" />
-        <service android:name=".service.SendUnicastIntentService" />
+        <service android:name="ch.bfh.evoting.instacirclelib.service.ProcessUnicastMessageIntentService" />
+        <service android:name="ch.bfh.evoting.instacirclelib.service.ProcessBroadcastMessageIntentService" />
+        <service android:name="ch.bfh.evoting.instacirclelib.service.SendBroadcastIntentService" />
+        <service android:name="ch.bfh.evoting.instacirclelib.service.SendUnicastIntentService" />
 
         <activity
-            android:name=".MainActivity"
+            android:name="ch.bfh.evoting.instacirclelib.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,7 +51,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CreateNetworkActivity"
+            android:name="ch.bfh.evoting.instacirclelib.CreateNetworkActivity"
             android:label="@string/app_name" >
         </activity>
     </application>

@@ -1,5 +1,5 @@
 
-package ch.bfh.instacircle.wifi;
+package ch.bfh.evoting.instacirclelib.wifi;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -20,7 +20,7 @@ import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.WindowManager.BadTokenException;
-import ch.bfh.instacircle.service.NetworkService;
+import ch.bfh.evoting.instacirclelib.service.NetworkService;
 
 /**
  * This class implements methods which are used to adjust the wifi configuration

@@ -1,4 +1,4 @@
-package ch.bfh.instacircle.service;
+package ch.bfh.evoting.instacirclelib.service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -22,9 +22,9 @@ import android.content.Intent;
 import android.net.DhcpInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
-import ch.bfh.instacircle.Message;
-import ch.bfh.instacircle.db.NetworkDbHelper;
-import ch.bfh.instacircle.wifi.WifiAPManager;
+import ch.bfh.evoting.instacirclelib.Message;
+import ch.bfh.evoting.instacirclelib.db.NetworkDbHelper;
+import ch.bfh.evoting.instacirclelib.wifi.WifiAPManager;
 
 public class SendBroadcastIntentService extends IntentService {
 

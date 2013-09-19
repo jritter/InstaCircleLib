@@ -1,5 +1,5 @@
 
-package ch.bfh.instacircle;
+package ch.bfh.evoting.instacirclelib;
 
 import java.io.Serializable;
 

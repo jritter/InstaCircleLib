@@ -1,8 +1,9 @@
 
-package ch.bfh.instacircle;
+package ch.bfh.evoting.instacirclelib;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 
 import android.content.Context;
 import android.view.LayoutInflater;

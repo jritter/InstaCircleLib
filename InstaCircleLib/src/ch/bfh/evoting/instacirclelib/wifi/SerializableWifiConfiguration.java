@@ -1,5 +1,5 @@
 
-package ch.bfh.instacircle.wifi;
+package ch.bfh.evoting.instacirclelib.wifi;
 
 import java.io.Serializable;
 import java.util.Arrays;

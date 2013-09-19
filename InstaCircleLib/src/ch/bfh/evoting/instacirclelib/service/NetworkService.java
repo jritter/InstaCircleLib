@@ -1,5 +1,5 @@
 
-package ch.bfh.instacircle.service;
+package ch.bfh.evoting.instacirclelib.service;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -12,12 +12,11 @@ import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
-import ch.bfh.instacircle.MainActivity;
-import ch.bfh.instacircle.Message;
-import ch.bfh.instacircle.R;
-import ch.bfh.instacircle.db.NetworkDbHelper;
-import ch.bfh.instacircle.wifi.AdhocWifiManager;
-import ch.bfh.instacircle.wifi.WifiAPManager;
+import ch.bfh.evoting.instacirclelib.MainActivity;
+import ch.bfh.evoting.instacirclelib.Message;
+import ch.bfh.evoting.instacirclelib.db.NetworkDbHelper;
+import ch.bfh.evoting.instacirclelib.wifi.AdhocWifiManager;
+import ch.bfh.evoting.instacirclelib.wifi.WifiAPManager;
 
 /**
  * This class implements an Android service which runs in the background. It

@@ -1,5 +1,5 @@
 
-package ch.bfh.instacircle;
+package ch.bfh.evoting.instacirclelib;
 
 import android.app.Activity;
 import android.app.AlertDialog;

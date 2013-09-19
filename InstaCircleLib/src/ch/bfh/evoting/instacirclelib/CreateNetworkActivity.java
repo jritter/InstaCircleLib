@@ -1,5 +1,5 @@
 
-package ch.bfh.instacircle;
+package ch.bfh.evoting.instacirclelib;
 
 import java.util.UUID;
 
@@ -20,8 +20,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import ch.bfh.instacircle.service.NetworkService;
-import ch.bfh.instacircle.wifi.WifiAPManager;
+import ch.bfh.evoting.instacirclelib.service.NetworkService;
+import ch.bfh.evoting.instacirclelib.wifi.WifiAPManager;
 
 /**
  * Activity which provides functionality to set up a new Wifi access point

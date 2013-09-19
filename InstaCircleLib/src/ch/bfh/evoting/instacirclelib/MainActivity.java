@@ -1,5 +1,5 @@
 
-package ch.bfh.instacircle;
+package ch.bfh.evoting.instacirclelib;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,8 +42,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-import ch.bfh.instacircle.db.NetworkDbHelper;
-import ch.bfh.instacircle.wifi.AdhocWifiManager;
+import ch.bfh.evoting.instacirclelib.db.NetworkDbHelper;
+import ch.bfh.evoting.instacirclelib.wifi.AdhocWifiManager;
 
 /**
  * Activity which is displayed when launching the application

@@ -1,4 +1,4 @@
-package ch.bfh.instacircle.service;
+package ch.bfh.evoting.instacirclelib.service;
 
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;

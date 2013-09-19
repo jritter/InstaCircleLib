@@ -1,5 +1,5 @@
 
-package ch.bfh.instacircle.db;
+package ch.bfh.evoting.instacirclelib.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import ch.bfh.instacircle.Message;
+import ch.bfh.evoting.instacirclelib.Message;
 
 /**
  * This class implements a SQLiteOpenHelper which provides the query methods

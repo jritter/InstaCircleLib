@@ -1,4 +1,4 @@
-package ch.bfh.instacircle.service;
+package ch.bfh.evoting.instacirclelib.service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -12,7 +12,7 @@ import java.util.Random;
 
 import android.app.IntentService;
 import android.content.Intent;
-import ch.bfh.instacircle.Message;
+import ch.bfh.evoting.instacirclelib.Message;
 
 public class SendUnicastIntentService extends IntentService {
 	

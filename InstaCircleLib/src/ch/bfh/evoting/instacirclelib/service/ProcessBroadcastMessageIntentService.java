@@ -1,4 +1,4 @@
-package ch.bfh.instacircle.service;
+package ch.bfh.evoting.instacirclelib.service;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -10,8 +10,8 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import ch.bfh.instacircle.Message;
-import ch.bfh.instacircle.db.NetworkDbHelper;
+import ch.bfh.evoting.instacirclelib.Message;
+import ch.bfh.evoting.instacirclelib.db.NetworkDbHelper;
 
 public class ProcessBroadcastMessageIntentService extends IntentService {
 

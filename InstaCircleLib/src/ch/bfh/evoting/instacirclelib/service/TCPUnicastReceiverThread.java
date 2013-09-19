@@ -1,5 +1,5 @@
 
-package ch.bfh.instacircle.service;
+package ch.bfh.evoting.instacirclelib.service;
 
 import java.io.DataInputStream;
 import java.io.IOException;
