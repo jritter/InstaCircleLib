@@ -379,12 +379,14 @@ public class AdhocWifiManager {
 			if (startActivity) {
 				if (success) {
 					// start the service if we were successful
-
-					// Intent intent = new Intent(context,
-					// NetworkActiveActivity.class);
-					// intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					// intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-					// context.startActivity(intent);
+					String packageName = context.getPackageName();
+					if(packageName.equals("ch.bfh.evoting.adminapp")){
+						Intent i = new Intent("ch.bfh.evoting.adminapp.NetworkInformationsActivity");
+						context.startActivity(i);
+					} else if (packageName.equals("ch.bfh.evoting.voterapp")){
+						Intent i = new Intent("ch.bfh.evoting.voterapp.CheckElectorateActivity");
+						context.startActivity(i);
+					}
 
 					Intent intent = new Intent(context, NetworkService.class);
 					context.stopService(intent);
