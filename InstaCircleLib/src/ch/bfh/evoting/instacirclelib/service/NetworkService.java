@@ -1,9 +1,7 @@
 
 package ch.bfh.evoting.instacirclelib.service;
 
-import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,7 +10,6 @@ import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
-import ch.bfh.evoting.instacirclelib.MainActivity;
 import ch.bfh.evoting.instacirclelib.Message;
 import ch.bfh.evoting.instacirclelib.db.NetworkDbHelper;
 import ch.bfh.evoting.instacirclelib.wifi.AdhocWifiManager;
@@ -89,10 +86,10 @@ public class NetworkService extends Service {
 		stopSelf();
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.cancelAll();
-		Intent intent = new Intent(this, MainActivity.class);
-		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-		startActivity(intent);
+		//Intent intent = new Intent(this, MainActivity.class);
+		//intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		//startActivity(intent);
 		// Unregister the receiver which listens for messages to be sent
 		LocalBroadcastManager.getInstance(this).unregisterReceiver(
 				messageSendReceiver);
