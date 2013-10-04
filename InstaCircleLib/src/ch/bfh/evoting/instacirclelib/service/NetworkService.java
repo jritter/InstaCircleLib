@@ -1,9 +1,7 @@
 
 package ch.bfh.evoting.instacirclelib.service;
 
-import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,7 +10,7 @@ import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
-import ch.bfh.evoting.instacirclelib.MainActivity;
+import android.util.Log;
 import ch.bfh.evoting.instacirclelib.Message;
 import ch.bfh.evoting.instacirclelib.db.NetworkDbHelper;
 import ch.bfh.evoting.instacirclelib.wifi.AdhocWifiManager;
@@ -33,7 +31,7 @@ public class NetworkService extends Service {
 
 	private UDPBroadcastReceiverThread[] udpBroadcastReceiverThreads;
 	private TCPUnicastReceiverThread[] tcpUnicastReceiverThreads;
-	
+
 
 	/*
 	 * (non-Javadoc)
@@ -62,26 +60,26 @@ public class NetworkService extends Service {
 	 */
 	@Override
 	public void onDestroy() {
-		
+
 		// Stop everything if the leave message is coming from myself
 		try {
 			for (int i = 0; i < tcpUnicastReceiverThreads.length; i++){
-					tcpUnicastReceiverThreads[i].interrupt();
-					udpBroadcastReceiverThreads[i].interrupt();
-					tcpUnicastReceiverThreads[i].serverSocket.close();
-					udpBroadcastReceiverThreads[i].socket.close();
+				tcpUnicastReceiverThreads[i].interrupt();
+				udpBroadcastReceiverThreads[i].interrupt();
+				tcpUnicastReceiverThreads[i].serverSocket.close();
+				udpBroadcastReceiverThreads[i].socket.close();
 			}
 		} catch (Exception e) {
 
 		}
-		
-		
+
+
 		dbHelper.closeConversation();
-		
-		
+
+
 		WifiManager wifiman = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 		new AdhocWifiManager(wifiman)
-				.restoreWifiConfiguration(getBaseContext());
+		.restoreWifiConfiguration(getBaseContext());
 		WifiAPManager wifiAP = new WifiAPManager();
 		if (wifiAP.isWifiAPEnabled(wifiman)) {
 			wifiAP.disableHotspot(wifiman, getBaseContext());
@@ -89,10 +87,10 @@ public class NetworkService extends Service {
 		stopSelf();
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.cancelAll();
-		Intent intent = new Intent(this, MainActivity.class);
-		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-		startActivity(intent);
+		//		Intent intent = new Intent(this, MainActivity.class);
+		//		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		//		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		//		startActivity(intent);
 		// Unregister the receiver which listens for messages to be sent
 		LocalBroadcastManager.getInstance(this).unregisterReceiver(
 				messageSendReceiver);
@@ -143,12 +141,12 @@ public class NetworkService extends Service {
 
 		udpBroadcastReceiverThreads = new UDPBroadcastReceiverThread[100];
 		tcpUnicastReceiverThreads = new TCPUnicastReceiverThread[100];
-		
+
 		// starting 100 threads allocating 100 Ports
 		for (int i = 0; i < 50; i++){
 			udpBroadcastReceiverThreads[i] = new UDPBroadcastReceiverThread(this, i + 12300);
 			tcpUnicastReceiverThreads[i] = new TCPUnicastReceiverThread(this, i + 12300);
-			
+
 			udpBroadcastReceiverThreads[i].start();
 			tcpUnicastReceiverThreads[i].start();
 		}
@@ -158,8 +156,6 @@ public class NetworkService extends Service {
 		LocalBroadcastManager.getInstance(this).registerReceiver(
 				messageSendReceiver, new IntentFilter("messageSend"));
 
-		
-
 		// Opening a conversation
 		dbHelper.openConversation(getSharedPreferences(PREFS_NAME, 0)
 				.getString("password", "N/A"));
@@ -168,6 +164,11 @@ public class NetworkService extends Service {
 		// file
 		joinNetwork(getSharedPreferences(PREFS_NAME, 0).getString(
 				"identification", "N/A"));
+
+		// start the next activity if we were successful
+		Intent i = new Intent("NetworkServiceStarted");
+		LocalBroadcastManager.getInstance(this.getApplicationContext()).sendBroadcast(i);
+		Log.e("NetworkService", "service started");
 
 		/*//Added by Phil
 		// start the EvotingMainActivity
@@ -203,7 +204,7 @@ public class NetworkService extends Service {
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
 		notificationManager.notify(TAG, 1, notification);*/
-		
+
 		/* Commented by Phil, no more needed
 		// start the NetworkActiveActivity
 		intent = new Intent(this, NetworkActiveActivity.class);
@@ -239,7 +240,7 @@ public class NetworkService extends Service {
 		}
 	};
 
-	
+
 	/**
 	 * Helper method which assembles and send a join message and a whoisthere
 	 * message right afterwards
@@ -250,14 +251,14 @@ public class NetworkService extends Service {
 
 		Message joinMessage = new Message(identification, Message.MSG_MSGJOIN,
 				identification, dbHelper.getNextSequenceNumber());
-		
+
 		Intent joinMessageIntent = new Intent(NetworkService.this, SendBroadcastIntentService.class);
 		joinMessageIntent.putExtra("message", joinMessage);
 		startService(joinMessageIntent);
 
 		Message whoisthereMessage = new Message(identification,
 				Message.MSG_WHOISTHERE, identification, -1);
-		
+
 		Intent whoisthereMessageIntent = new Intent(NetworkService.this, SendBroadcastIntentService.class);
 		whoisthereMessageIntent.putExtra("message", whoisthereMessage);
 		startService(whoisthereMessageIntent);

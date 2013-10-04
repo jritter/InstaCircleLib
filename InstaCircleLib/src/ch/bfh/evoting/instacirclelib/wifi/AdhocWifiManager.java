@@ -36,6 +36,7 @@ public class AdhocWifiManager {
 	private WifiManager wifi;
 	private SharedPreferences preferences;
 	private SharedPreferences.Editor editor;
+	private String SSID;
 
 	/**
 	 * Instatiates a new instance
@@ -240,6 +241,7 @@ public class AdhocWifiManager {
 			editor.putInt("originalNetId", wifi.getConnectionInfo()
 					.getNetworkId());
 			editor.commit();
+			SSID = config.SSID.replace("\"", "");
 
 			// handle the strange habit with the double quotes...
 			config.SSID = "\"" + config.SSID + "\"";
@@ -379,19 +381,13 @@ public class AdhocWifiManager {
 			if (startActivity) {
 				if (success) {
 					// start the service if we were successful
-					String packageName = context.getPackageName();
-					if(packageName.equals("ch.bfh.evoting.adminapp")){
-						Intent i = new Intent("ch.bfh.evoting.adminapp.NetworkInformationsActivity");
-						context.startActivity(i);
-					} else if (packageName.equals("ch.bfh.evoting.voterapp")){
-						Intent i = new Intent("ch.bfh.evoting.voterapp.CheckElectorateActivity");
-						context.startActivity(i);
-					}
-
 					Intent intent = new Intent(context, NetworkService.class);
+					preferences = context.getSharedPreferences(PREFS_NAME, 0);
+					editor = preferences.edit();
+					editor.putString("SSID", SSID);
+					editor.commit();
 					context.stopService(intent);
 					context.startService(intent);
-
 				} else {
 
 					// display a dialog if the connection was not successful

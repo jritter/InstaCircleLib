@@ -404,6 +404,7 @@ public class WifiAPManager {
 				intent.putExtra("action", "createnetwork");
 				context.stopService(intent);
 				context.startService(intent);
+				
 			}
 		}
 	}
