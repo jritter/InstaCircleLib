@@ -87,10 +87,11 @@ public class NetworkService extends Service {
 		stopSelf();
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.cancelAll();
-		//		Intent intent = new Intent(this, MainActivity.class);
-		//		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		//		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-		//		startActivity(intent);
+
+		//Intent intent = new Intent(this, MainActivity.class);
+		//intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		//startActivity(intent);
 		// Unregister the receiver which listens for messages to be sent
 		LocalBroadcastManager.getInstance(this).unregisterReceiver(
 				messageSendReceiver);
