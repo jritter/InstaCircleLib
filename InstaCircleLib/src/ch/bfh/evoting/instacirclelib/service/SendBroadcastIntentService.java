@@ -24,7 +24,6 @@ import android.net.wifi.WifiManager;
 import android.util.Log;
 import ch.bfh.evoting.instacirclelib.Message;
 import ch.bfh.evoting.instacirclelib.db.NetworkDbHelper;
-import ch.bfh.evoting.instacirclelib.wifi.WifiAPManager;
 
 public class SendBroadcastIntentService extends IntentService {
 
@@ -148,51 +147,52 @@ public class SendBroadcastIntentService extends IntentService {
 	public InetAddress getBroadcastAddress() {
 		InetAddress found_bcast_address = null;
 
+		//TODO no more possible since move in VotingLib => find a solution
 		WifiManager wifiManager = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
-		if(new WifiAPManager().isWifiAPEnabled(wifiManager)){
-
-			System.setProperty("java.net.preferIPv4Stack", "true");
-			try {
-				Enumeration<NetworkInterface> niEnum = NetworkInterface
-						.getNetworkInterfaces();
-				while (niEnum.hasMoreElements()) {
-					NetworkInterface ni = niEnum.nextElement();
-
-					if (ni.getDisplayName().contains("p2p-wlan")) {
-						for (InterfaceAddress interfaceAddress : ni.getInterfaceAddresses()) {
-
-							found_bcast_address = interfaceAddress.getBroadcast();
-						}
-						if (found_bcast_address != null) {
-							break;
-						}
-					}
-				}
-
-				if (found_bcast_address == null) {
-					niEnum = NetworkInterface.getNetworkInterfaces();
-					while (niEnum.hasMoreElements()) {
-						NetworkInterface ni = niEnum.nextElement();
-						if (!ni.isLoopback()) {
-							for (InterfaceAddress interfaceAddress : ni
-									.getInterfaceAddresses()) {
-
-								found_bcast_address = interfaceAddress
-										.getBroadcast();
-							}
-
-							if (found_bcast_address != null) {
-								break;
-							}
-
-						}
-					}
-				}
-			} catch (SocketException e) {
-				e.printStackTrace();
-			}
-
-		} else {
+//		if(new WifiAPManager().isWifiAPEnabled(wifiManager)){
+//
+//			System.setProperty("java.net.preferIPv4Stack", "true");
+//			try {
+//				Enumeration<NetworkInterface> niEnum = NetworkInterface
+//						.getNetworkInterfaces();
+//				while (niEnum.hasMoreElements()) {
+//					NetworkInterface ni = niEnum.nextElement();
+//
+//					if (ni.getDisplayName().contains("p2p-wlan")) {
+//						for (InterfaceAddress interfaceAddress : ni.getInterfaceAddresses()) {
+//
+//							found_bcast_address = interfaceAddress.getBroadcast();
+//						}
+//						if (found_bcast_address != null) {
+//							break;
+//						}
+//					}
+//				}
+//
+//				if (found_bcast_address == null) {
+//					niEnum = NetworkInterface.getNetworkInterfaces();
+//					while (niEnum.hasMoreElements()) {
+//						NetworkInterface ni = niEnum.nextElement();
+//						if (!ni.isLoopback()) {
+//							for (InterfaceAddress interfaceAddress : ni
+//									.getInterfaceAddresses()) {
+//
+//								found_bcast_address = interfaceAddress
+//										.getBroadcast();
+//							}
+//
+//							if (found_bcast_address != null) {
+//								break;
+//							}
+//
+//						}
+//					}
+//				}
+//			} catch (SocketException e) {
+//				e.printStackTrace();
+//			}
+//
+//		} else {
 			//source: http://stackoverflow.com/questions/2993874/android-broadcast-address
 			WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 			DhcpInfo dhcp = wifi.getDhcpInfo();
@@ -207,7 +207,7 @@ public class SendBroadcastIntentService extends IntentService {
 				e.printStackTrace();
 			}
 
-		}
+//		}
 		Log.d(this.getClass().getSimpleName(), "Broadcast address is "+found_bcast_address);
 
 		return found_bcast_address;

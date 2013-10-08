@@ -13,8 +13,6 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import ch.bfh.evoting.instacirclelib.Message;
 import ch.bfh.evoting.instacirclelib.db.NetworkDbHelper;
-import ch.bfh.evoting.instacirclelib.wifi.AdhocWifiManager;
-import ch.bfh.evoting.instacirclelib.wifi.WifiAPManager;
 
 /**
  * This class implements an Android service which runs in the background. It
@@ -76,14 +74,14 @@ public class NetworkService extends Service {
 
 		dbHelper.closeConversation();
 
-
-		WifiManager wifiman = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-		new AdhocWifiManager(wifiman)
-		.restoreWifiConfiguration(getBaseContext());
-		WifiAPManager wifiAP = new WifiAPManager();
-		if (wifiAP.isWifiAPEnabled(wifiman)) {
-			wifiAP.disableHotspot(wifiman, getBaseContext());
-		}
+// TODO not possible anymore since moved in VotingLib => find a solution
+//		WifiManager wifiman = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+//		new AdhocWifiManager(wifiman)
+//		.restoreWifiConfiguration(getBaseContext());
+//		WifiAPManager wifiAP = new WifiAPManager();
+//		if (wifiAP.isWifiAPEnabled(wifiman)) {
+//			wifiAP.disableHotspot(wifiman, getBaseContext());
+//		}
 		stopSelf();
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.cancelAll();
