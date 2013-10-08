@@ -73,23 +73,13 @@ public class NetworkService extends Service {
 
 
 		dbHelper.closeConversation();
+		
+		LocalBroadcastManager.getInstance(this.getApplicationContext()).sendBroadcast(new Intent("NetworkServiceStopped"));
 
-// TODO not possible anymore since moved in VotingLib => find a solution
-//		WifiManager wifiman = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-//		new AdhocWifiManager(wifiman)
-//		.restoreWifiConfiguration(getBaseContext());
-//		WifiAPManager wifiAP = new WifiAPManager();
-//		if (wifiAP.isWifiAPEnabled(wifiman)) {
-//			wifiAP.disableHotspot(wifiman, getBaseContext());
-//		}
 		stopSelf();
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.cancelAll();
 
-		//Intent intent = new Intent(this, MainActivity.class);
-		//intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-		//startActivity(intent);
 		// Unregister the receiver which listens for messages to be sent
 		LocalBroadcastManager.getInstance(this).unregisterReceiver(
 				messageSendReceiver);
